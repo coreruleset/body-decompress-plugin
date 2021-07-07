@@ -2,7 +2,10 @@
 
 ## Description
 
-This is a plugin that brings on-the-fly decompression of `RESPONSE_BODY` to CRS.
+This is a plugin that brings on-the-fly decompression of `RESPONSE_BODY` to CRS
+while running ModSecurity in embedded mode (please see ModSecurity configuration
+directive `SecDisableBackendCompression` if you are running in reverse proxy
+mode).
 
 As some of the malicious software is using compression of response body to
 bypass detection by checking the `RESPONSE_BODY` for patterns, this plugin will
@@ -70,6 +73,31 @@ successfull decompression bomb attack. Do NOT set this too high as decompression
 is done inside RAM.
 
 Default value: 102400
+
+## Testing
+
+After configuration, decompression should be tested. Here is an example rule and
+PHP script which will produce compressed output. If decompression works ok,
+request to the script will be blocked.
+
+```
+<?php
+ini_set("zlib.output_compression", "On");
+echo "22d51ee0c812123c541f2a1bdf794fd1";
+?>
+```
+
+```
+SecRule TX:RESPONSE_BODY_DECOMPRESSED "@contains 22d51ee0c812123c541f2a1bdf794fd1" \
+    "id:99999,\
+    phase:4,\
+    block,\
+    t:none,\
+    msg:'RESPONSE_BODY decompression was successfull.',\
+    severity:'CRITICAL',\
+    setvar:'tx.outbound_anomaly_score_pl1=+%{tx.tx.critical_anomaly_score}',\
+    setvar:'tx.anomaly_score_pl1=+%{tx.tx.critical_anomaly_score}'"
+```
 
 ## Known problems
 
