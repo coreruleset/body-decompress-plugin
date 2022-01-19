@@ -29,7 +29,7 @@ Currently, only gzip decompression is supported.
 
 lua-zlib library should be part of your linux distribution. Here is an example
 of installation on Debian linux:  
-`apt install lua-zlib
+`apt install lua-zlib`
 
 ## Plugin installation
 
