@@ -14,5 +14,4 @@ SecAction \
   pass,\
   t:none,\
   ver:'body-decompress-plugin/1.0.0',\
-  setvar:'tx.body-decompress-plugin_enable=1',\
   setvar:'tx.body-decompress-plugin_max_data_size_bytes=102400'"

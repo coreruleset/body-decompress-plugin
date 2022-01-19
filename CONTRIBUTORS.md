@@ -1,3 +1,3 @@
-# Contributors to Bodt Decompress Plugin
+# Contributors to Body Decompress Plugin
 
 - [Jozef Sudolský](https://github.com/azurit)

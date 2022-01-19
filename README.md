@@ -25,11 +25,16 @@ Currently, only gzip decompression is supported.
  * ModSecurity compiled with Lua support
  * lua-zlib library
 
-## Installation
+## lua-zlib library installation
+
+lua-zlib library should be part of your linux distribution. Here is an example
+of installation on Debian linux:  
+`apt install lua-zlib
+
+## Plugin installation
 
 Copy all files from `plugins` directory into the `plugins` directory of your
 OWASP ModSecurity Core Rule Set (CRS) installation.
-
 
 ### Preparation for older installations
 
@@ -40,31 +45,27 @@ OWASP ModSecurity Core Rule Set (CRS) installation.
 
 ```
 <IfModule security2_module>
+
  Include modsecurity.d/owasp-modsecurity-crs/crs-setup.conf
 
- IncludeOptional modsecurity.d/owasp-modsecurity-crs/plugins/*-before.conf
+ Include modsecurity.d/owasp-modsecurity-crs/plugins/*-config.conf
+ Include modsecurity.d/owasp-modsecurity-crs/plugins/*-before.conf
  Include modsecurity.d/owasp-modsecurity-crs/rules/*.conf
- IncludeOptional modsecurity.d/owasp-modsecurity-crs/plugins/*-after.conf
+ Include modsecurity.d/owasp-modsecurity-crs/plugins/*-after.conf
 
 </IfModule>
 ```
 
-_Your exact config may look a bit different, namely the paths. The important part is to accompany the rules-include with two plugins-includes before and after like above. Adjust the paths accordingly._
+_Your exact config may look a bit different, namely the paths. The important
+part is to accompany the rules-include with two plugins-includes before and
+after like above. Adjust the paths accordingly._
 
 ## Configuration
 
-All settings can be done in file `plugins/body-decompress-config-before.conf`.
+All settings can be done in file `plugins/body-decompress-config.conf` which
+must be created by copying or renamig file `plugins/body-decompress-config.conf.example`:
+`cp plugins/body-decompress-config.conf.example plugins/body-decompress-config.conf`
 
-### tx.body-decompress-plugin_enable
-
-This setting can be used to disable or enable the whole plugin.
-
-Values:
- * 0 - disable plugin
- * 1 - enable plugin
-
-Default value: 1
- 
 ### tx.body-decompress-plugin_max_data_size_bytes
 
 Maximum data size, in bytes, which are decompressed. If (compressed) data are
@@ -103,12 +104,12 @@ SecRule TX:RESPONSE_BODY_DECOMPRESSED "@contains 22d51ee0c812123c541f2a1bdf794fd
 
  * Web browsers are printing `Content Encoding Error` while blocking request
    which uses compression, as `Content-Encoding` header is still set and browser
-   awaits compressed response. This problem is only occuring when PHP is running
-   using FastCGI (PHP-FPM).
+   awaits compressed response. This problem is only affecting PHP applications
+   if PHP is running using FastCGI (PHP-FPM).
 
 ## License
 
-Copyright (c) 2021 OWASP ModSecurity Core Rule Set project. All rights reserved.
+Copyright (c) 2021-2022 OWASP ModSecurity Core Rule Set project. All rights reserved.
 
 The OWASP ModSecurity Core Rule Set and its official plugins are distributed
 under Apache Software License (ASL) version 2. Please see the enclosed LICENSE
