@@ -52,9 +52,7 @@ in the official CRS documentation.
 
 ## Configuration
 
-All settings can be done in file `plugins/body-decompress-config.conf` which
-must be created by copying or renamig file `plugins/body-decompress-config.conf.example`:  
-`cp plugins/body-decompress-config.conf.example plugins/body-decompress-config.conf`
+All settings can be done in file `plugins/body-decompress-config.conf`.
 
 ### tx.body-decompress-plugin_max_data_size_bytes
 
