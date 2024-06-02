@@ -22,7 +22,7 @@ tests:
             uri: "/reflect"
             data: |
               {
-                "encodedBody": "H4sIAJepXGYAA7OxL8goUAAAGCqh2AYAAAA=",
+                "encodedBody": "H4sIAAAAAAAAA7OxL8goUAAAGCqh2AYAAAA=",
                 "headers": {"Content-Encoding": "gzip", "Content-Length": "26"}
               }
           output:
