@@ -16,11 +16,14 @@ tests:
               Host: "localhost"
               User-Agent: "OWASP CRS test agent"
               Accept: "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5"
-              Content-Encoding: "gzip"
-              Content-Length: 26
+              Content-Type: application/json
             method: "POST"
             version: "HTTP/1.1"
             uri: "/reflect"
-            data: "{\"body\": \"\\x1f\\x8b\\x08\\x00\\x00\\x00\\x00\\x00\\x00\\x03\\xb3\\xb1/\\xc8(P\\x00\\x00\\x18*\\xa1\\xd8\\x06\\x00\\x00\\x00\"}"
+            data: |
+              {
+                "encodedBody": "H4sIAJepXGYAA7OxL8goUAAAGCqh2AYAAAA=",
+                "headers": {"Content-Encoding": "gzip"}
+              }
           output:
             log_contains: id "953120"
