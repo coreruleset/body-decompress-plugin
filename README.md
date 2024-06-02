@@ -21,7 +21,7 @@ Currently, only gzip decompression is supported.
 
 ## Prerequisities
 
- * ModSecurity compiled with Lua support
+ * ModSecurity v2 compiled with Lua support (ModSecurity v3 is currently unsupported)
  * lua-zlib library
 
 ## How to determine whether you have Lua support in ModSecurity

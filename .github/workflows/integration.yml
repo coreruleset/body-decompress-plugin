@@ -6,4 +6,5 @@ jobs:
   integration-tests:
     uses: coreruleset/crs-plugin-test-action/.github/workflows/integration.yaml@main  # yamllint disable-line rule:line-length
     with:
+      # Only httpd is currently supported
       backends: '["apache"]'
