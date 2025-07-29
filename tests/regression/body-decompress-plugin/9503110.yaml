@@ -2,8 +2,7 @@
 meta:
   author: "azurit"
   description: "Regression tests for Body Decompress Plugin."
-  enabled: true
-  name: 9503110.yaml
+rule_id: 9503110
 tests:
   - test_id: 1
     desc: "Test if decompression works using '<?php ' pattern."
