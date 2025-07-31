@@ -2,25 +2,24 @@
 meta:
   author: "azurit"
   description: "Regression tests for Body Decompress Plugin."
-  enabled: true
-  name: 9503110.yaml
+rule_id: 9503110
 tests:
-  - test_title: 9503110-1
+  - test_id: 1
     desc: "Test if decompression works using '<?php ' pattern."
     stages:
-      - stage:
-          input:
-            dest_addr: "127.0.0.1"
-            port: 80
-            headers:
-              Host: "localhost"
-              User-Agent: "OWASP CRS test agent"
-              Accept: "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5"
-              Content-Encoding: "gzip"
-              Content-Length: 26
-            method: "POST"
-            version: "HTTP/1.1"
-            uri: "/reflect"
-            data: "{\"body\": \"\\x1f\\x8b\\x08\\x00\\x00\\x00\\x00\\x00\\x00\\x03\\xb3\\xb1/\\xc8(P\\x00\\x00\\x18*\\xa1\\xd8\\x06\\x00\\x00\\x00\"}"
-          output:
-            log_contains: id "953120"
+      - input:
+          dest_addr: "127.0.0.1"
+          port: 80
+          headers:
+            Host: "localhost"
+            User-Agent: "OWASP CRS test agent"
+            Accept: "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5"
+            Content-Encoding: "gzip"
+            Content-Length: 26
+          method: "POST"
+          version: "HTTP/1.1"
+          uri: "/reflect"
+          data: "{\"body\": \"\\x1f\\x8b\\x08\\x00\\x00\\x00\\x00\\x00\\x00\\x03\\xb3\\xb1/\\xc8(P\\x00\\x00\\x18*\\xa1\\xd8\\x06\\x00\\x00\\x00\"}"
+        output:
+          log:
+            expect_ids: [953120]
