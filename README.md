@@ -94,6 +94,13 @@ SecRule TX:RESPONSE_BODY_DECOMPRESSED "@contains 22d51ee0c812123c541f2a1bdf794fd
    which uses compression, as `Content-Encoding` header is still set and browser
    awaits compressed response. This problem is only affecting PHP applications
    if PHP is running using FastCGI (PHP-FPM).
+ * This plugin does not currently work with ModSecurity v3 (the nginx connector).
+   `plugins/body-decompress-before.conf` ends its chain with a bare `SecRuleScript`
+   directive with no action list, which is valid syntax under ModSecurity v2
+   (Apache) but fails to parse under ModSecurity v3, breaking every following
+   directive. This is a known upstream ModSecurity v3 parser bug, tracked at
+   [owasp-modsecurity/ModSecurity#3108](https://github.com/owasp-modsecurity/ModSecurity/issues/3108).
+   Until it is fixed upstream, use this plugin with ModSecurity v2 / Apache only.
 
 ## License
 
