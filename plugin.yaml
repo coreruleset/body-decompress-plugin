@@ -14,7 +14,7 @@ plugin:
     plugin, compressed responses bypass response body inspection rules.
   type: "official"
   category: "utility"
-  status: "being-tested"
+  status: "tested"
   license: "Apache-2.0"
   authors:
     - name: "OWASP CRS Team"
