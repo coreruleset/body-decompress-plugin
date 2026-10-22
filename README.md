@@ -1,5 +1,7 @@
 # OWASP CRS - Body Decompress Plugin
 
+![Integration tests](https://github.com/coreruleset/body-decompress-plugin/actions/workflows/integration.yml/badge.svg)
+
 ## Description
 
 This is a plugin that brings on-the-fly decompression of `RESPONSE_BODY` to CRS
